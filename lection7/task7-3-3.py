@@ -29,7 +29,7 @@ linkks=[]
 #Сначала просто выдираем текст внутри тега в список (будут еще вложеннные теги, суп их игнорит
 for link in soup.find_all('code'):
     links.append(link.text)
-#Теперь делаем список список - строка из списка 1 и количество повторений строки в списке 1
+#Теперь делаем список списков - строка из списка 1 и количество повторений строки в списке 1
 for i in sorted(links,reverse=True):
     linkks.append([i,links.count(i)])
 #print(sorted(linkks,key=lambda k: (-k[1],k[0])))
