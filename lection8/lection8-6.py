@@ -4,6 +4,20 @@
 в случае xml данные просто можно записать в файл обычным print(xml,file=fout)
 Иногда данные бывают бинарными, обычный print не подойдет
 Изучим универсальный способ добывать что угодно из Интернета и сохранять в виде файла
+---
+Можно сделать два скрипта - один для закгрузки в файлы, второй - для обработки полученных файлов
+---
+Дороги в OSM кодируются тегом way и тегом tag с атрибутами k:v=highway:что-нибудь
+дороги бывают primary и secondary
+попробуем посчитать длину по типу дороги
+Надо знать, из каких точек состоит ломаная, у точек есть своя широта и долгота
+<nd ref="***"/>
+nd.ref=node.id
+Порядок может быть произвольный
+Надо для каждой дороги сохранить список Id точек
+в отдельный словарь для каждой точки сложим ее широту и долготу, в качестве ключа - ее id
+потом по списку дорог пройтись по их точкам и узнать расстояния между соседними точками
+потом пройтись по всем уквадрату в зависимости от типа и узнаем, как развита дорожная сеть в квадрате
 '''
 #появляется функция urlretrieve - "добыть файл"
 from bs4 import BeautifulSoup as BS
@@ -25,7 +39,12 @@ for i in range(100):
         url = "https://www.openstreetmap.org/api/0.6/map?bbox=" + str(nminlon) + "%2C" + str(nminlat) + "%2C" + str(nmaxlon) + "%2C" + str(nmaxlat)
         #response = urlopen(url)
         #xml = response.read().decode('utf8')
-        urlretrieve(url,'osm/map'+str(i)+'-'+str(j)+'.osm')
+        #Сделаем папку osm внутри проекта и будем кидать 10000 файлов туда
+        filename=str(i)+'-'+str(j)+'.osm'
+        u#rlretrieve(url,'osm/map'+filename)
+        urlretrieve(url, 'osm/map.osm')#пока все будем лепить в один файл
+        #xml=open('osm/map'+filename,'r',encoding='utf8').read()
+        xml=open('osm/map.osm','r',encoding='utf8').read()
         soup = BS(xml, 'lxml')
         names = {}
         for node in soup.find_all('node'):
