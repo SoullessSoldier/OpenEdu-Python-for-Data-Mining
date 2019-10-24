@@ -1,0 +1,5 @@
+f_in=open('input.txt','r')
+s=f_in.read()
+ss=set(s.split())
+print(len(ss))
+f_in.close()
