@@ -23,7 +23,7 @@ xml = response.read().decode('utf8')
 xml=open('mapcity.osm','r',encoding='utf8').read()
 soup = BS(xml, 'lxml')
 for way in soup.find_all('way'):
-    flag = False  # вдруг "дорога" - не хайвей
+    #flag = False  # вдруг "дорога" - не хайвей
     for tag in way('tag'):
         if tag['k'] == 'building':
             # нам надо узнать все id нодов, входящих в этот way
