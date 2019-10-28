@@ -12,3 +12,30 @@ https://data.mos.ru/opendata/893
 "район Покровское-Стрешнево": ["Иваньковское шоссе, дом 6"], "район Щукино": ["Сосновая улица, дом 3, строение 2"]}, ...}
 data-25342-2019-09-30.xlsx
 """
+from openpyxl import load_workbook
+import json
+wb=load_workbook('data-25342-2019-09-30.xlsx')
+admareas={}
+districts={}
+adresses=[]
+sheet=wb['Sheet0']
+"""
+admarea - row i, column 5
+district - row i, column 6
+address - row i, column 7
+"""
+for i in range(2,sheet.max_row+1):
+    admarea=sheet.cell(row=i,column=5).value
+    district=sheet.cell(row=i,column=6).value
+    address=sheet.cell(row=i,column=7).value
+    id=sheet.cell(row=i,column=1).value
+
+    if admarea not in admareas:
+        admareas[admarea]={}
+    if district not in admareas[admarea]:
+        admareas[admarea][district]=[]
+    admareas[admarea][district].append(address)
+fout=open("task9-4-out.json","w")
+#json.dump(admareas,fout,ensure_ascii=False,indent=4)
+json.dump(admareas,fout,ensure_ascii=False)
+fout.close()
