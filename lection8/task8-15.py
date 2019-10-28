@@ -17,7 +17,7 @@ def getsqr(coordlist):
      degreelen = 111300
      newcoord = []
      for now in coordlist:
-          newcoord.append(((now[0] - baselat) * degreelen, (now[1] - baselon) * degreelen * math.sin(baselat)))
+          newcoord.append(((now[0] - baselat) * degreelen, (now[1] - baselon) * degreelen * math.cos(baselat)))
      sqr = 0
      for i in range(len(newcoord) - 1):
           sqr += newcoord[i][0] * newcoord[i + 1][1] - newcoord[i + 1][0] * newcoord[i][1]
@@ -37,7 +37,7 @@ def getsqr(coordlist):
      degreelen = 111300
      newcoord = []
      for now in coordlist:
-          newcoord.append(((now[0] - baselat) * degreelen, (now[1] - baselon) * degreelen * math.sin(baselat)))
+          newcoord.append(((now[0] - baselat) * degreelen, (now[1] - baselon) * degreelen * math.cos(baselat)))
      sqr = 0
      for i in range(len(newcoord) - 1):
           sqr += newcoord[i][0] * newcoord[i + 1][1] - newcoord[i + 1][0] * newcoord[i][1]

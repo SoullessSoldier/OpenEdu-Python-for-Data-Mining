@@ -35,7 +35,7 @@ for i in range(2,sheet.max_row+1):
     if district not in admareas[admarea]:
         admareas[admarea][district]=[]
     admareas[admarea][district].append(address)
-fout=open("task9-4-out.json","w")
+fout=open("task9-4-out.json","w",encoding="utf-8")
 #json.dump(admareas,fout,ensure_ascii=False,indent=4)
 json.dump(admareas,fout,ensure_ascii=False)
 fout.close()
