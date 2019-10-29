@@ -6,10 +6,13 @@ JSON - удобный способ передавать данные из одн
 """
 from urllib.request import urlopen
 import json
+import time
+
 #total=1000#test data, real - 68674
 total=68674
 i=0
 alllst=[]#пустой список для всего, что скачалось
+start_time = time.time()
 while i<total:
     url="https://apidata.mos.ru/v1/datasets/1401/rows?api_key=c25290a0b5f170f69d45a28665b43168&$top=500&$skip="+str(i)
     response=urlopen(url)
@@ -23,5 +26,6 @@ print(len(alllst))
 fout=open("lection-9-4-out.json","w",encoding="utf-8")
 json.dump(alllst,fout,ensure_ascii=False)
 fout.close()
+print('Программа завершила работу за: ', time.time() - start_time)
 #теперь можно натравить скрипт на реальные 60к+ данных
 #а скрипт 9-4-1 будет принимать запрос и выводить время отключения

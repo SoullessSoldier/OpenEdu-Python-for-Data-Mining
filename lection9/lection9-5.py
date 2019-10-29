@@ -5,7 +5,7 @@
 Принимаем адрес и ищем вхождения его как подстроки, выводим время отключения
 """
 import json
-fin=open("lecton9-4-out.json","r",encoding="utf-8")#lection-9-4-out.json
+fin=open("lection-9-4-out.json","r",encoding="utf-8")#lection-9-4-out.json
 text=fin.read()
 lst=json.loads(text)
 s=input("Введите адрес: ")
