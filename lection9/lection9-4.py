@@ -6,7 +6,8 @@ JSON - удобный способ передавать данные из одн
 """
 from urllib.request import urlopen
 import json
-total=1000#68674
+#total=1000#test data, real - 68674
+total=68674
 i=0
 alllst=[]#пустой список для всего, что скачалось
 while i<total:
